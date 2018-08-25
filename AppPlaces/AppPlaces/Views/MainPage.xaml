@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:AppPlaces.Behaviors;assembly=AppPlaces"
+             x:Class="AppPlaces.Views.MainPage"
+             Title="{Binding Title}">
+
+    <ListView ItemsSource="{Binding Places}"
+                  VerticalOptions="FillAndExpand" HasUnevenRows="true"
+                  behaviors:AttachedItemTappedBehavior.Command="{Binding ItemClickCommand}"
+                  RefreshCommand="{Binding RefreshCommand}" IsPullToRefreshEnabled="true"
+                  IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                  CachingStrategy="RecycleElement">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout Orientation="Horizontal" Padding="5">
+                        <Image Source="{Binding UrlPhoto}" WidthRequest="70" HeightRequest="70" />
+                        <StackLayout HorizontalOptions="StartAndExpand">
+                            <Label Text="{Binding Location}" TextColor="Black" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
+</ContentPage>
